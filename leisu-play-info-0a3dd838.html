@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷速 · 运动生活站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #fcf3e0 0%, #fae4c9 60%, #f5d4b0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.25rem;
+            line-height: 1.6;
+            color: #2e241e;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9rem 1.8rem;
+            background: rgba(255, 245, 232, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            box-shadow: 0 4px 14px rgba(160, 100, 60, 0.08);
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #4d2f1f;
+            letter-spacing: 0.02em;
+        }
+
+        .brand span {
+            background: #b57d58;
+            color: #fff7ec;
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            margin-left: 0.3rem;
+            vertical-align: middle;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.6rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: #4a3428;
+            text-decoration: none;
+            padding: 0.3rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b57d58;
+            color: #1f140f;
+        }
+
+        /* hero 区 */
+        .hero {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            padding: 3rem 2.5rem 2.8rem;
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 12px 30px rgba(110, 60, 30, 0.08);
+            margin-bottom: 2.8rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #3f281b;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 i {
+            font-style: normal;
+            background: #dbb594;
+            padding: 0.1rem 0.6rem;
+            border-radius: 40px;
+            color: #2b1b12;
+            font-weight: 400;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: 0 auto 1.4rem;
+            font-size: 1.05rem;
+            color: #4f3a2b;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #f0ddd0;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #3a281d;
+        }
+
+        /* 卡片区 — 三个场景 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .scene-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 6px 18px rgba(140, 90, 50, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #f0ded0;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 28px rgba(120, 70, 35, 0.08);
+        }
+
+        .scene-card h3 {
+            font-size: 1.4rem;
+            font-weight: 450;
+            margin-bottom: 0.75rem;
+            color: #422c1d;
+        }
+
+        .scene-card h3 small {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #9a7b62;
+            margin-left: 0.3rem;
+        }
+
+        .scene-card p {
+            color: #4f3b2b;
+            font-size: 0.95rem;
+        }
+
+        .scene-card a {
+            color: #9d6d47;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #dbbc9f;
+        }
+
+        .scene-card a:hover {
+            color: #633f26;
+            border-bottom-color: #633f26;
+        }
+
+        /* 介绍 + 可信说明 */
+        .intro-section {
+            background: white;
+            border-radius: 40px;
+            padding: 2.6rem 2.8rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 6px 20px rgba(120, 70, 35, 0.05);
+        }
+
+        .intro-section h2 {
+            font-size: 1.8rem;
+            font-weight: 470;
+            color: #3d2a1b;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #d8b494;
+            padding-left: 1.2rem;
+        }
+
+        .intro-section p {
+            margin-bottom: 1.2rem;
+            color: #3f3228;
+        }
+
+        .intro-section .emphasis {
+            background: #fbf3ea;
+            padding: 1.2rem 1.8rem;
+            border-radius: 30px;
+            margin: 1.5rem 0 0.8rem;
+            font-size: 0.98rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem 2.5rem 2.4rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 6px 16px rgba(100, 55, 25, 0.04);
+        }
+
+        .faq-mini h2 {
+            font-size: 1.6rem;
+            font-weight: 450;
+            margin-bottom: 1.6rem;
+            color: #3c281b;
+        }
+
+        .faq-item {
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid #eddccf;
+            padding-bottom: 0.9rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #4d3322;
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-item p {
+            color: #5a4433;
+            font-size: 0.95rem;
+        }
+
+        /* 页脚 */
+        .site-footer {
+            text-align: center;
+            padding: 1.2rem 0 0.4rem;
+            color: #5e4b3a;
+            font-size: 0.85rem;
+            border-top: 1px solid #e5cfbd;
+            margin-top: 1rem;
+        }
+
+        .site-footer a {
+            color: #7b5c41;
+            text-decoration: none;
+            border-bottom: 1px dotted #dbb99b;
+        }
+
+        .site-footer a:hover {
+            color: #3f2819;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+
+            .top-nav {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.8rem 1.2rem;
+                border-radius: 30px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+                margin-top: 0.4rem;
+            }
+
+            .hero {
+                padding: 2rem 1.5rem;
+                border-radius: 40px;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .scenes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-section {
+                padding: 1.8rem 1.2rem;
+                border-radius: 30px;
+            }
+
+            .faq-mini {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 导航 -->
+    <nav class="top-nav">
+        <div class="brand">雷速<span>sport</span></div>
+        <div class="nav-links">
+            <a href="#intro">介绍</a>
+            <a href="#scenes">场景</a>
+            <a href="#faq">常见问题</a>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero">
+        <h1>运动生活，<i>雷速</i> 同行</h1>
+        <p>
+            一个关注运动日常与轻量化资讯的小站。没有复杂的门槛，只有贴近生活的节奏。
+        </p>
+        <div class="tagline">⚡ 从热身到恢复，聊点实在的</div>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section id="scenes" class="scenes-grid">
+        <div class="scene-card">
+            <h3>晨间·轻唤醒 <small>routine</small></h3>
+            <p>清晨十分钟拉伸、阳台微汗，用简单的动作打开一天。在 <a href="https://leisu-play-sport.com">雷速</a> 里记录属于自己的晨练小习惯。</p>
+        </div>
+        <div class="scene-card">
+            <h3>午后·动起来 <small>active</small></h3>
+            <p>午休间隙打场球、或跟练一段居家操。运动不必大张旗鼓，舒服才可持续。来看看 <a href="https://leisu-play-sport.com">雷速</a> 上的轻量运动灵感。</p>
+        </div>
+        <div class="scene-card">
+            <h3>傍晚·慢恢复 <small>recovery</small></h3>
+            <p>放松筋膜、温和拉伸，给身体一点关照。许多爱好者在这里交流恢复心得——<a href="https://leisu-play-sport.com">雷速</a> 慢慢成了大家的小社区。</p>
+        </div>
+    </section>
+
+    <!-- 介绍与可信说明 -->
+    <section id="intro" class="intro-section">
+        <h2>站点介绍 · 可信说明</h2>
+        <p>
+            <strong>雷速</strong> 不是什么大平台，只是一个由运动爱好者搭建的内容汇集地。我们不上架商品、不搞排名，只整理那些在日常中真正能用起来的运动思路。每一篇笔记、每一条动态都来自普通人的真实分享——可能不专业，但足够真诚。
+        </p>
+        <p>
+            关于可信度：站内所有运动建议均标明来源或经验背景，不做未经核实的功效承诺。如果你在别处看到过类似内容，那很可能是因为大家都从公开的可靠资料里汲取信息。我们不制造焦虑，也不鼓吹“速成”。
+        </p>
+        <div class="emphasis">
+            💬 一句话概括：<a href="https://leisu-play-sport.com" style="color:#7b5437; font-weight:500;">雷速</a> 更像一个运动生活笔记墙——有人写下今天的拉伸感受，有人分享最近发现的有趣运动小工具，互相参考，仅此而已。
+        </div>
+        <p style="margin-top:1rem;">
+            站点本身不存储用户隐私数据，也不设强制注册。你可以随时浏览、随时离开。如果你也喜欢这种不赶时间、不追流量的氛围，欢迎来转转。
+        </p>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section id="faq" class="faq-mini">
+        <h2>常见说明 · 几个你可能想问的</h2>
+        <div class="faq-item">
+            <strong>❓ 这里的运动内容适合新手吗？</strong>
+            <p>大部分内容偏向入门和日常，没有高难度动作或危险指导。当然，如果你有特定伤病或顾虑，建议先咨询专业人士。</p>
+        </div>
+        <div class="faq-item">
+            <strong>❓ 内容更新频繁吗？</strong>
+            <p>保持每周几次的更新节奏，偶尔会整理一些主题合集。我们不追求日更，更看重实在和有用。</p>
+        </div>
+        <div class="faq-item">
+            <strong>❓ 可以直接引用或分享站内内容吗？</strong>
+            <p>非商用、注明来源的分享我们很欢迎。如果是转载改编，建议先看看站内关于版权的说明页面。</p>
+        </div>
+        <div class="faq-item">
+            <strong>❓ 怎样找到 <a href="https://leisu-play-sport.com" style="color:#8d6849;">雷速</a> 的最新动态？</strong>
+            <p>目前主要通过网站本身更新，没有额外的社交账号。你可以把页面加入书签，偶尔过来逛逛就好。</p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <p>© 雷速 · 运动生活 · 回到 <a href="https://leisu-play-sport.com">雷速</a> 首页</p>
+        <p style="margin-top:0.2rem; opacity:0.6;">keep it simple, keep it moving</p>
+    </footer>
+</div>
+</body>
+</html>
